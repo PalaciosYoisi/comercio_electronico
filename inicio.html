@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comercio Electrónico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="style/style.css">
+
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow p-4">
+            <h1 class="text-center text-primary mb-4"><i class="fa-solid fa-store"></i> Comercio Electrónico</h1>
+            <p class="text-center">Selecciona un procedimiento almacenado y proporciona los datos necesarios:</p>
+            
+            <form id="formulario" action="conexion/conexion.php" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="accion" class="form-label"><i class="fa-solid fa-database"></i> Procedimiento:</label>
+                    <select name="accion" id="accion" class="form-select" required>
+                        <option value="">-- Selecciona un procedimiento o Función --</option>
+                        <option value="actualizar_stock">Actualizar Stock</option>
+                        <option value="aplicar_cupon">Aplicar Cupón</option>
+                        <option value="productos_categorias">Filtrar productos por categorías</option>
+                        <option value="reporte_ventas">Generar reportes de ventas por rango de fecha</option>
+                        <option value="AplicarImpuesto">Función Aplicar impuesto</option>
+                        <option value="CalcularTotalOrden">Funcion para Calcular Total Orden</option>
+                        <option value="ObtenerNombreUsuario">Funcion para Obtener Nombre Usuario</option>
+                    </select>
+                </div>
+
+                <div id="inputFields"></div>
+                
+                <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-play"></i> Ejecutar</button>
+            </form>
+        </div>
+
+
+
+    <script>
+        document.getElementById("accion").addEventListener("change", function() {
+            let inputFields = document.getElementById("inputFields");
+            inputFields.innerHTML = "";
+            let accion = this.value;
+
+            let campos = {
+                "actualizar_stock": [
+                    { label: "Id del producto", name: "p_id_producto" },
+                    { label: "Cantidad", name: "p_cantidad" }
+                ],
+                "aplicar_cupon": [
+                    { label: "ID del detalle de la orden", name: "p_id_detalle" },
+                    { label: "ID de la orden", name: "p_id_orden" },
+                    { label: "ID del cliente", name: "p_id_cliente" },
+                    { label: "ID del producto", name: "p_id_producto" },
+                    { label: "Cantidad", name: "p_cantidad" },
+                    { label: "Porcentaje de descuento", name: "p_descuento_cupon" },
+                    { label: "Fecha de la venta", name: "p_fecha_venta", type: "date" }
+                ],
+                "productos_categorias": [
+                    { label: "ID del producto", name: "p_id_producto" }
+                ],
+                "reporte_ventas": [
+                    { label: "Fecha inicio", name: "fecha_inicio", type: "date" },
+                    { label: "Fecha Fin", name: "fecha_fin", type: "date" }
+                ],
+                "AplicarImpuesto": [
+                    { label: "Monto a pagar", name: "p_monto" },
+                    { label: "ID del impuesto", name: "p_id_impuesto" }
+                ],
+                "CalcularTotalOrden": [
+                    { label: "ID del detalle de orden", name: "p_id_detalle" }
+                ],
+                "ObtenerNombreUsuario": [
+                    { label: "ID del usuario", name: "id_usuario" }
+                ],
+            };
+
+            if (campos[accion]) {
+                campos[accion].forEach(campo => {
+                    let div = document.createElement("div");
+                    div.classList.add("mb-3");
+
+                    let label = document.createElement("label");
+                    label.classList.add("form-label");
+                    label.innerText = campo.label;
+                    
+                    let input = document.createElement("input");
+                    input.type = campo.type || "text";  
+                    input.name = campo.name;
+                    input.classList.add("form-control");
+                    input.required = true;
+
+                    div.appendChild(label);
+                    div.appendChild(input);
+                    inputFields.appendChild(div);
+                });
+            }
+        });
+
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "Esta acción ejecutará el procedimiento seleccionado.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, ejecutar",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow p-4">
+            <h2 class="text-center text-primary"><i class="fa-solid fa-user"></i> Iniciar Sesión</h2>
+
+            <form action="conexion/login.php" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i> Correo:</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label"><i class="fa-solid fa-lock"></i> Contraseña:</label>
+                    <input type="password" name="clave" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-sign-in-alt"></i> Ingresar</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+</body>
+</html>
