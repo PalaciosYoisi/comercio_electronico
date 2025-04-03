@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Registrarse</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body class="bg-light">
     <div class="container mt-5">
         <div class="card shadow p-4">
-            <h2 class="text-center text-primary"><i class="fa-solid fa-user"></i> Iniciar Sesión</h2>
+            <h2 class="text-center text-primary"><i class="fa-solid fa-user"></i> Registro</h2>
 
-            <form action="conexion/login.php" method="POST" class="needs-validation" novalidate>
+            <form action="conexion/registro.php" method="POST" class="needs-validation" novalidate>
+
+                <div class="mb-3">
+                    <label for="name" class="form-label"><i class="fa-solid fa-user"></i> Nombre:</label>
+                    <input type="text" name="p_nombre_usuario" class="form-control" required>
+                </div>
+                
                 <div class="mb-3">
                     <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i> Correo:</label>
-                    <input type="email" name="email" class="form-control" required>
+                    <input type="email" name="p_email" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="password" class="form-label"><i class="fa-solid fa-lock"></i> Contraseña:</label>
-                    <input type="password" name="clave" class="form-control" required>
+                    <input type="password" name="p_clave" class="form-control" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-sign-in-alt"></i> Ingresar</button>
 
-                <a href="registro.html">No tienes cuenta? Regístrate aquí</a>
+                <a href="index.html">Ya tienes cuenta? Inicia sesión aquí</a>
             </form>
         </div>
     </div>

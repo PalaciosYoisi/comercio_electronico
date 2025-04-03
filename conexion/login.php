@@ -7,7 +7,6 @@ if(!$conexion){
     exit();
 
 }
-#3 establecer comando sql
 
 $sql = "select email, clave from usuarios where email='".$_POST['email']."' and clave='".$_POST['clave']."'";
 
@@ -22,4 +21,6 @@ if($resultado){
     echo 'El correo o clave es incorrecto ';
 }
 
+// Cerrar conexión
+$conn->close();
 ?>
